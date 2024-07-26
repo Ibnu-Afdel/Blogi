@@ -27,7 +27,7 @@ class SessionController extends Controller
         }  ;
         $request->session()->regenerate() ;
 
-        return redirect()->intended('post.index');   
+        return redirect()->intended(route('posts.index'));   
     }
     public function destroy()
     {

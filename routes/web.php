@@ -10,16 +10,21 @@ Route::get('/', HomeController::class)->name('home');
 Route::view('/contact', 'contact');
 
 Route::controller(PostController::class)->group(function(){
-    Route::get('/posts' , 'index')->name('posts.index') ;
+    Route::get('/posts' , 'index')->name('posts.index') ;   
     Route::get('/posts/create' , 'create')->name('posts.create')
     ->middleware('auth') ;
-    Route::post('/posts' , 'store')->name('posts.store') ;
+    Route::post('/posts' , 'store')->name('posts.store') 
+    ->middleware('auth') ;
     Route::get('/posts/{post}' , 'show')->name('posts.show') ;
     Route::get('/posts/{post}/edit' , 'edit')->name('posts.edit')
-    ->middleware('auth') ;
-    Route::patch('/posts/{post}' , 'update')->name('posts.update') ;
+    ->middleware('auth') 
+    ->can('edit-post', 'post');
+    Route::patch('/posts/{post}' , 'update')->name('posts.update') 
+    ->middleware('auth') 
+    ->can('edit-post', 'post');
     Route::delete('/posts/{post}' , 'destroy')->name('posts.destroy')
-    ->middleware('auth') ;
+    ->middleware('auth')
+    ->can('edit-post', 'post') ;
 }) ;
 
 Route::get('/register' , [RegistrationController::class , 'create'])->name('register') ;
