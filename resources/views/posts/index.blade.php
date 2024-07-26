@@ -1,6 +1,14 @@
 <x-layout>
     @section('Posts' , 'Index')
-    @section('heading' , 'Posts')
+    @section('heading')
+    Post:
+    @auth
+        {{ Auth::user()->name }}
+    @else
+        Guest
+    @endauth  
+ 
+    @endsection
     @section('button')
     <x-button href="{{ route('posts.create') }}">Create</x-button>
     @endsection

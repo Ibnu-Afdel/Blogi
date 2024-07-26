@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -12,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index' , ['posts' => Post::all()]) ;
+        $posts = Post::with('user')->get();
+        return view('posts.index' , ['posts' => $posts]) ;
     }
 
     /**
@@ -20,6 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (Auth::guest()){
+            return redirect()->route('login.create') ;
+        }
         return view('posts.create') ;
     }
 
@@ -33,6 +40,10 @@ class PostController extends Controller
             'topic' => ['required'],
             'description' => ['required']
         ]) ;
+
+    
+        $attributes['user_id'] = Auth::id() ;
+        
         // create
         Post::create($attributes) ;
         // redirect
@@ -52,6 +63,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::guest()){
+            return redirect()->route('login.create') ;
+        }
         return view('posts.edit' , ['post' => $post]);
     }
 
@@ -60,11 +74,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // authentication
-
-        // autherization
-
-        // validate
 
         $attributes = $request->validate([
             'topic' => ['required'],
@@ -73,9 +82,6 @@ class PostController extends Controller
 
         // update
             $post->update($attributes) ;
-        // scesion
-
-        // redirect
 
         return redirect()->route('posts.index') ;
 

@@ -8,6 +8,7 @@
     {{ $post->description }}
 </p>
 <br>
+@can('edit-post', $post)
 <div class="flex space-x-2">
 <x-button href="{{ route('posts.edit', $post) }}" >Edit</x-button>
 <form method="POST" action="{{ route('posts.destroy', $post) }}">
@@ -17,4 +18,5 @@
     <button class="mt-6 inline-block rounded bg-red-500 px-5 py-3 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring cursor-pointer">Delete</button>
 </form>
 </div>
+@endcan
 </x-layout>
