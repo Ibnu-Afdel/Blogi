@@ -3,6 +3,6 @@
     @section('heading', 'Contact Us')
 
     <p>
-        to contact us through ...
+        to contact us through telegram : https://t.me/IbnuAfdelDevDiary
     </p>
 </x-layout>

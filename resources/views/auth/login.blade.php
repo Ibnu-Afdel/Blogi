@@ -7,8 +7,7 @@
       <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Welcome Back</h1>
   
       <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti
-        inventore quaerat mollitia?
+        Welcome, Unleash your creativity and let your story unfold on Blogi.
       </p>
   
       <form method="POST" action="{{ route('login.store') }}" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">

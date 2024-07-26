@@ -8,25 +8,18 @@
     <title>@yield('title')</title>
 </head>
 <body class="h-full" >
-
- 
-
 <div class="min-h-full">
     <nav class="bg-cyan-900">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
-          
           <div class="flex items-center justify-between">
-            
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <x-nav-link href="/" :active="request()->is('/')" >Home</x-nav-link>
                 <x-nav-link href="/posts" :active="request()->is('posts')" >Posts</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')" >Contact us</x-nav-link>
-            
             </div>
             </div>
-           
           </div>
           <div class="hidden md:block">
             <div class="ml-4 flex items-center  md:ml-6">
@@ -44,16 +37,10 @@
                   <x-onav-link  href="{{ route('login') }}" :active="request()->is('login')" >Log In</x-onav-link>
                 </div>
                 @endguest
-                
-  
-            
             </div>
           </div>
-         
         </div>
       </div>
-  
-     
     </nav>
   
     <header class="bg-white shadow">
@@ -63,14 +50,11 @@
         </div>
       </header>
       
-      
-    
     <main>
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {{ $slot }}
       </div>
     </main>
   </div>
-  
 </body>
 </html>

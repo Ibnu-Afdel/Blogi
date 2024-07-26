@@ -8,17 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    
     public function index()
     {
         $posts = Post::with('user')->orderBy('created_at' , 'desc')->get();
-        return view('posts.index' , ['posts' => $posts]) ;
+        return view('posts.index' , ['posts' => $posts ]) ;
     }
 
     public function create()
     {
-        // if (Auth::guest()){
-        //     return redirect()->route('login.create') ;
-        // }
         return view('posts.create') ;
     }
 

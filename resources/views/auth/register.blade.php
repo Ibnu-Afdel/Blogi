@@ -8,8 +8,8 @@
       <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Get started today</h1>
   
       <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti
-        inventore quaerat mollitia?
+        Create stunning blogs,
+        engage with a vibrant community, and discover new voices that resonate with you.
       </p>
   
       <form method="POST" action="{{ route('register.store') }}" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
