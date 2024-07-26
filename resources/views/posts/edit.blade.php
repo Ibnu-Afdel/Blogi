@@ -50,7 +50,7 @@
             </div>
       
             <div class="flex justify-between">
-              <a href=" {{ route('posts.index') }} "
+              <a href=" {{ route('posts.show' , $post) }} "
                 type="button"
                 class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               >

@@ -161,7 +161,7 @@
         
         <p class="text-center text-sm text-gray-500">
             Already have account ?
-            <a class="underline" href="{{ route('login.create') }}">Sign In</a>
+            <a class="underline" href="{{ route('login') }}">Sign In</a>
           </p>
         
       </form>

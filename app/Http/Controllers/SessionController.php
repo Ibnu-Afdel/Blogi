@@ -25,13 +25,11 @@ class SessionController extends Controller
                 'email' => 'credentials didn match, sorry' 
             ]) ;
         }  ;
-
         $request->session()->regenerate() ;
 
-        return redirect()->route('posts.index');
+        return redirect()->intended('post.index');   
     }
-
-    public function logout()
+    public function destroy()
     {
         Auth::logout() ;
         return redirect()->route('home');

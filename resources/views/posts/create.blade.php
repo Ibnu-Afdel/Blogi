@@ -4,7 +4,7 @@
 
     <div class="flex justify-center items-center py-10 bg-white">
         <div class="w-full max-w-md p-6 bg-gray-100 rounded-lg shadow-md">
-            <form method="POST" action=" {{ route('posts.store') }} ">
+            <form method="POST" action=" {{ route('posts.store') }} " enctype="multipart/form-data" >
                 @csrf
             <div class="mb-4">
               <label
@@ -44,8 +44,26 @@
                   placeholder="learning laravel has..."
                 >{{ old('description') }}</textarea>
               </div>
-              <x-error name="body" />
+              <x-error name="description" />
+              
             </div>
+
+            <div class="mb-6">
+              <label
+                  for="image"
+                  class="block text-sm font-medium text-gray-700"
+              >
+                  Upload Image:
+              </label>
+              <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  class="mt-1 block w-full text-sm text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+              <x-error name="image" />
+          </div>
+          
       
             <div class="flex justify-between">
               <a href=" {{ route('posts.index') }} "
@@ -66,3 +84,4 @@
       </div>
 
 </x-layout>
+

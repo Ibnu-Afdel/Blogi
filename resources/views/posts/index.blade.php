@@ -1,7 +1,7 @@
 <x-layout>
     @section('Posts' , 'Index')
     @section('heading')
-    Post:
+    Post :
     @auth
         {{ Auth::user()->name }}
     @else
@@ -16,15 +16,14 @@
     @forelse ($posts as $post )
        
       <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg flex">
-        {{-- @if($post->image) --}}
+        @if($post->image)
           <img
             alt=""
-            {{-- src="{{ $post->image }}" --}}
-            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+            src="{{  asset($post->image) }}"
             class="h-56 w-1/3 object-cover"
           />
-        {{-- @endif --}}
-      
+        @endif
+
         <div class="bg-white p-4 sm:p-6 {{ $post->image ? 'w-2/3' : 'w-full' }}">
           <div class="flex justify-between items-start">
             <a href="{{ route('posts.show', $post) }}">

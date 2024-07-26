@@ -34,7 +34,7 @@
             <div class="ml-4 flex items-center  md:ml-6">
                 @auth
                 <div class=" flex justify-center  ">
-                  <form method="POST" action="{{ route('logout.store') }}">
+                  <form method="POST" action="{{ route('logout.destroy') }}">
                     @csrf
                   <x-obutton   :active="request()->is('logout')" >Log Out</x-obutton>
                 </form>
@@ -42,8 +42,8 @@
                 @endauth
                 @guest
                 <div class=" flex justify-center space-x-2  ">
-                  <x-onav-link  href="{{ route('register.create') }}" :active="request()->is('register')" >Register</x-onav-link>
-                  <x-onav-link  href="{{ route('login.create') }}" :active="request()->is('login')" >Log In</x-onav-link>
+                  <x-onav-link  href="{{ route('register') }}" :active="request()->is('register')" >Register</x-onav-link>
+                  <x-onav-link  href="{{ route('login') }}" :active="request()->is('login')" >Log In</x-onav-link>
                 </div>
                 @endguest
                 
