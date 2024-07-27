@@ -19,10 +19,12 @@ class RegistrationController extends Controller
         // validate
         $attributes = $request->validate([
             'name' => ['required'],
-            'email' => ['required' , 'email' , 'unique:users,email'],
+            'email' => ['required' , 'email' , 'unique:users,email '],
             'password' => ['required', 'confirmed' ]
         ]); 
+        
         // create
+    
 
         $user = User::create($attributes);
         //login
@@ -30,4 +32,5 @@ class RegistrationController extends Controller
         //redirect
         return redirect()->route('posts.index');
     }
+    
 }

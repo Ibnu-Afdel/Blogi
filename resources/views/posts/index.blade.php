@@ -38,6 +38,7 @@
         </div>
       </article>
       <br>
+      {{ $posts->links() }}
       @empty
 
       <div class="grid h-screen place-content-top bg-white px-4">

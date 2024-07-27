@@ -28,14 +28,6 @@
             />
             <x-error  name="name" />
   
-            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-4 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -123,7 +115,7 @@
               name="password_confirmation"
                 type="password"
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter password"
+                placeholder="Confirm Your Password"
               />
               <x-error  name="password_confirmation" />
     

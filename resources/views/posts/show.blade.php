@@ -55,7 +55,7 @@
     
 
         <div class="flex items-center justify-between mt-6">
-            <a href="{{ route('posts.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">
+            <a href="{{ $previousUrl }}" class="text-blue-600 hover:text-blue-800 text-sm">
                 &larr; Back
             </a>
             @if($post->updated_at != $post->created_at)

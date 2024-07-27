@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class PostController extends Controller
 {
     
     public function index()
     {
-        $posts = Post::with('user')->orderBy('created_at' , 'desc')->get();
+        $posts = Post::with('user')->orderBy('created_at' , 'desc')->simplePaginate(5);
         return view('posts.index' , ['posts' => $posts ]) ;
     }
 
@@ -44,7 +45,11 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        return view('posts.show' , ['post' => $post]) ;
+        $previousUrl = URL::previous();
+        if (strpos($previousUrl, 'edit') !== false) {
+            $previousUrl = route('posts.index'); 
+        }
+        return view('posts.show' , ['post' => $post , 'previousUrl' => $previousUrl]) ;
     }
 
 
@@ -72,6 +77,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        
         $post->delete() ;
         return redirect()->route('posts.index');
     }
