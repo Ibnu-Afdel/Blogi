@@ -45,11 +45,11 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        $previousUrl = URL::previous();
-        if (strpos($previousUrl, 'edit') !== false) {
-            $previousUrl = route('posts.index'); 
-        }
-        return view('posts.show' , ['post' => $post , 'previousUrl' => $previousUrl]) ;
+
+        $post->load('comments.user');
+
+
+        return view('posts.show' , ['post' => $post]) ;
     }
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegistrationController;
@@ -33,3 +34,13 @@ Route::post('/register' , [RegistrationController::class , 'store'])->name('regi
 Route::get('/login' , [SessionController::class , 'create'])->name('login') ;
 Route::post('/login' , [SessionController::class , 'store'])->name('login.store') ;
 Route::post('/logout' , [SessionController::class , 'destroy'])->name('logout.destroy') ;
+
+Route::middleware('auth')->group(function () {
+    Route::post('posts/{post}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::get('comments/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+    Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+});
+
+
+

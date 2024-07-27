@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
@@ -25,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit-post' , function(User $user , Post $post){
             return $post->user->is($user); 
         }) ;
+
+        Gate::define('edit-comment', function($user , Comment $comment){
+            return $user->id === $comment->user_id;
+        });
     }
 }
