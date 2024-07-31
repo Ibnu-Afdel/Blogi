@@ -37,9 +37,15 @@ Route::post('/logout' , [SessionController::class , 'destroy'])->name('logout.de
 
 Route::middleware('auth')->group(function () {
     Route::post('posts/{post}/comment', [CommentController::class, 'store'])->name('comment.store');
-    Route::get('comments/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
-    Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
-    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::get('comments/{comment}/edit', [CommentController::class, 'edit'])
+    ->can('edit-comment', 'comment')
+    ->name('comment.edit');
+    Route::put('comments/{comment}', [CommentController::class, 'update'])
+    ->can('edit-comment', 'comment')
+    ->name('comment.update');
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
+    ->can('edit-comment', 'comment')
+    ->name('comment.destroy');
 });
 
 

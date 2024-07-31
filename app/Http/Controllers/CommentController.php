@@ -26,20 +26,11 @@ class CommentController extends Controller
  
     public function edit(comment $comment)
     {
-
-        if (Gate::denies('edit-comment', $comment)) {
-            abort(403, 'Unauthorized action.');
-        }
-
         return view('comments.edit', compact('comment'));
     }
 
     public function update(Request $request, comment $comment)
     {
-
-        if (Gate::denies('edit-comment', $comment)) {
-            abort(403, 'Unauthorized action.');
-        }
 
         $attributes = $request->validate([
             'content' => ['required'],
@@ -51,13 +42,13 @@ class CommentController extends Controller
    
     }
 
-
     public function destroy(comment $comment)
     {
+        // use this if your not using can / dont want to use can 
 
-        if (Gate::denies('edit-comment', $comment)) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if (Gate::denies('edit-comment', $comment)) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         $comment->delete();
 

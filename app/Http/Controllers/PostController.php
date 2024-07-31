@@ -55,9 +55,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        if (Auth::guest()){
-            return redirect()->route('login.create') ;
-        }
+        
         return view('posts.edit' , ['post' => $post]);
     }
 
