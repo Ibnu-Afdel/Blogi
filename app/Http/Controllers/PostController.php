@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class PostController extends Controller
@@ -64,8 +65,18 @@ class PostController extends Controller
 
         $attributes = $request->validate([
             'topic' => ['required'],
-            'description' => ['required']
+            'description' => ['required'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]) ;
+
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $post->image));
+            }
+            // Stores new image
+            $imagepath = $request->file('image')->store('images', 'public');
+            $attributes['image'] = '/storage/' . $imagepath;
+        }
 
             $post->update($attributes) ;
 

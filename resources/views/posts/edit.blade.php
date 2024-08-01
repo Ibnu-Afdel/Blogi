@@ -4,7 +4,7 @@
 
     <div class="flex justify-center items-center py-10 bg-white">
         <div class="w-full max-w-md p-6 bg-gray-100 rounded-lg shadow-md">
-            <form method="POST" action=" {{ route('posts.update', $post) }} ">
+            <form method="POST" action=" {{ route('posts.update', $post) }} " enctype="multipart/form-data" >
                 @csrf
                 @method('PATCH')
                 <input type="hidden" name="_method" value="PATCH">
@@ -48,6 +48,47 @@
               </div>
               <x-error name="body" />
             </div>
+
+
+
+            <div class="mb-6">
+             
+              @if($post->image)
+              <label
+              for="prev_message"
+              class="block text-sm font-medium text-gray-700"
+          >
+              Previous Image:
+          </label>
+              <img
+                  alt="Post Image"
+                  src="{{ asset($post->image) }}"
+                  class="h-56 w-48 object-cover rounded-lg border border-gray-300"
+              />
+              @endif
+              <x-error name="image" />
+
+          </div>
+
+
+
+
+            <div class="mb-6">
+              <label
+                  for="image"
+                  class="block text-sm font-medium text-gray-700"
+              >
+                  Upload Image:
+              </label>
+              <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  class="mt-1 block w-full text-sm text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+              <x-error name="image" />
+          </div>
+
       
             <div class="flex justify-between">
               <a href=" {{ route('posts.show' , $post) }} "
