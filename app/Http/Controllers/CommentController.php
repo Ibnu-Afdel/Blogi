@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\comment;
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $attributes = $request->validate([
             'content' => ['required'],
-            'post_id' => ['required', 'integer', 'exists:posts,id'],
-        ]) ;
+        ]);
 
-        $attributes['user_id'] = Auth::id();
+        $post->comments()->create([
+            'content' => $attributes['content'],
+            'user_id' => Auth::id(),
+        ]);
 
-        comment::create($attributes);
-        return redirect()->route('posts.show', $request->post_id)->with('success', 'Comment added!');
+        return redirect()->route('posts.show', $post);
     }
 
- 
-    public function edit(comment $comment)
+
+    public function edit(Comment $comment)
     {
         return view('comments.edit', compact('comment'));
     }
 
-    public function update(Request $request, comment $comment)
+    public function update(Request $request, Comment $comment)
     {
 
         $attributes = $request->validate([
@@ -38,20 +39,13 @@ class CommentController extends Controller
 
         $comment->update($attributes);
 
-        return redirect()->route('posts.show', $comment->post_id)->with('success', 'Comment updated!');
-   
+        return redirect()->route('posts.show', $comment->post);
     }
 
     public function destroy(comment $comment)
     {
-        // use this if your not using can / dont want to use can 
-
-        // if (Gate::denies('edit-comment', $comment)) {
-        //     abort(403, 'Unauthorized action.');
-        // }
-
         $comment->delete();
 
-        return back()->with('success', 'Comment deleted!');
+        return back();
     }
 }
